@@ -1,47 +1,33 @@
-# CREATION DE L'ENVIRONNEMENT DU JEU
-
-lignes = int(input("Entrer le nombre de lignes : "))
-colonnes = int(input("Entrer le nombre de colonnes : "))
-
-tableau = [[int(input(f"Entrez tableau[{i}][{j}] : ")) for j in range(colonnes)] for i in range(lignes)]
-
-print("\nTableau initial :")
-for ligne in tableau:
-    print(ligne)
 
 
-def compter_voisins_vivants(grille, i, j, lignes, colonnes):
-    """Compte les voisins vivants de la cellule (i, j) sans déborder de la grille."""
-    total = 0
-    for di in (-1, 0, 1):
-        for dj in (-1, 0, 1):
-            if di == 0 and dj == 0:
-                continue
-            ni, nj = i + di, j + dj
-            if 0 <= ni < lignes and 0 <= nj < colonnes:
-                total += grille[ni][nj]
-    return total
+import pygame
+
+# init the game
+
+pygame.init()
+screen =pygame.display.set_mode((1280, 720))
+clock = pygame.time.Clock()
+start_game = True
+game_tittle = "JEU DE LA VIE"
+
+#personnalize the game
+game_font = pygame.font.SysFont("Arial", 36)
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+text = game_font.render("COMMENCER LE JEU", True, BLACK)
 
 
-def evoluer(grille, lignes, colonnes):
-    """Calcule la génération suivante à partir de l'état actuel (sans le modifier)."""
-    nouvelle_grille = [[0] * colonnes for _ in range(lignes)]
-    for i in range(lignes):
-        for j in range(colonnes):
-            voisins_vivants = compter_voisins_vivants(grille, i, j, lignes, colonnes)
-            if grille[i][j] == 1:
-                # Une cellule vivante survit avec 2 ou 3 voisins vivants
-                nouvelle_grille[i][j] = 1 if voisins_vivants in (2, 3) else 0
-            else:
-                # Une cellule morte naît avec exactement 3 voisins vivants
-                nouvelle_grille[i][j] = 1 if voisins_vivants == 3 else 0
-    return nouvelle_grille
 
+#start the game
 
-# DETERMINATION DU DESTIN DES CELLULES (une génération)
+while start_game:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            start_game = False
 
-tableau = evoluer(tableau, lignes, colonnes)
-
-print("\nTableau après une génération :")
-for ligne in tableau:
-    print(ligne)
+    screen.fill("gray")
+    pygame.display.set_caption(game_tittle)
+    screen.blit(text , (100,300))
+    pygame.display.flip()
+    clock.tick(60)
+pygame.quit()
