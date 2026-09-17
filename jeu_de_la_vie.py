@@ -5,7 +5,8 @@ import pygame
 # init the game
 
 pygame.init()
-screen =pygame.display.set_mode((1280, 720))
+screen_size=(1280,720)
+screen =pygame.display.set_mode(screen_size)
 clock = pygame.time.Clock()
 start_game = True
 game_tittle = "JEU DE LA VIE"
@@ -53,7 +54,7 @@ while start_game:
         if event.type == pygame.QUIT:
             start_game = False
 
-    screen.fill("gray")
+    screen.fill("red")
     pygame.display.set_caption(game_tittle)
     pygame.display.flip()
     clock.tick(60)
