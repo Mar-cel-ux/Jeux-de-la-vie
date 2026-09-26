@@ -1,13 +1,7 @@
 import pygame
 
 pygame.init()
-
-screen_size=(1960,420)
-screen =pygame.display.set_mode(screen_size)
-clock = pygame.time.Clock()
-start_game = True
-game_tittle = "JEU DE LA VIE"
-
+screen = pygame.display.set_mode((600, 400))
 
 bouton_rect = pygame.Rect(200, 150, 200, 60)
 
