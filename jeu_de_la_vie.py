@@ -7,6 +7,7 @@ screen_size=(840,420)
 screen =pygame.display.set_mode(screen_size)
 clock = pygame.time.Clock()
 BUTTON_COLOR = (70, 130, 180)
+RED_COLOR = (255, 0, 0)
 TEXT_COLOR = (255, 255, 255)
 start_game = True
 game_tittle = "JEU DE LA VIE"
@@ -43,7 +44,7 @@ while start_game:
             start_game = False
         if button_start.is_click(event):
             print("cliquer")
-            screen.fill(BUTTON_COLOR)
+            screen.fill(RED_COLOR)
             pygame.display.flip()
             time.sleep(5)
             #surface = pygame.Surface((400, 300))
