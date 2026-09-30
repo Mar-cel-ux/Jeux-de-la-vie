@@ -39,6 +39,17 @@ while start_game:
         if button_start.is_click(event):
             print("Bouton cliqué !")
 
+            show_surface = True
+
+            screen.fill((30, 30, 30))
+
+            if show_surface:
+                surface = pygame.Surface((400, 300))
+                surface.fill((255, 0, 0))
+                screen.blit(surface, (100, 100))
+            else:
+                button_start.draw(screen, BUTTON_COLOR)
+
     screen.fill((30, 30, 30))
     button_start.draw(screen,BUTTON_COLOR)
     pygame.display.flip()
