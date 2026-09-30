@@ -4,7 +4,7 @@ import time
 pygame.init()
 
 screen_size=(840,420)
-screen =pygame.display.set_mode(screen_size)
+screen =pygame.display.set_mode(screen_size,pygame.RESIZABLE)
 clock = pygame.time.Clock()
 BUTTON_COLOR = (70, 130, 180)
 RED_COLOR = (255, 0 , 0)
@@ -37,7 +37,7 @@ class Button:
             surface.blit(text_surface, text_rect)
 
 button_start = Button(x=185, y=185, width=200, height=50, text="Commencer")
-button_exit =  Button(x = 0, y = 300, width=200, height=50, text="Quitter" )
+button_exit =  Button(x = 185, y = 300, width=200, height=50, text="Quitter" )
 while start_game:
 
     for event in pygame.event.get():
