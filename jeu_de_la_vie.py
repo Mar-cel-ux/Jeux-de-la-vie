@@ -7,7 +7,7 @@ screen_size=(840,420)
 screen =pygame.display.set_mode(screen_size)
 clock = pygame.time.Clock()
 BUTTON_COLOR = (70, 130, 180)
-RED_COLOR = (255, 0, 0)
+RED_COLOR = (255, 0 , 0)
 TEXT_COLOR = (255, 255, 255)
 start_game = True
 game_tittle = "JEU DE LA VIE"
@@ -37,22 +37,23 @@ class Button:
             surface.blit(text_surface, text_rect)
 
 button_start = Button(x=185, y=185, width=200, height=50, text="Commencer")
+button_exit =  Button(x = 0, y = 300, width=200, height=50, text="Quitter" )
 while start_game:
-    
+
     for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            start_game = False
+
         if button_start.is_click(event):
             print("cliquer")
             screen.fill(RED_COLOR)
             pygame.display.flip()
             time.sleep(5)
-            #surface = pygame.Surface((400, 300))
-            #surface.fill((255, 0, 0))
-            #screen.blit(surface, (100, 100))
+        if button_exit.is_click(event):
+            start_game = False
+
     game_icon()
     screen.fill((30, 30, 30))
     button_start.draw(screen,BUTTON_COLOR)
+    button_exit.draw(screen,BUTTON_COLOR)
     pygame.display.flip()
 
 pygame.quit()
