@@ -57,3 +57,8 @@ while start_game:
     pygame.display.flip()
 
 pygame.quit()
+
+class Cellules :
+    def __init__(self,etat,couleur)
+        self.etat = etat
+        self.couleur = couleur
