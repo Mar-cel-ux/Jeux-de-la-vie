@@ -12,18 +12,48 @@ BUTTON_COLOR = (70, 130, 180)
 RED_COLOR = (255, 0 , 0)
 GREEN_COLOR = (0, 255, 0)
 TEXT_COLOR = (255, 255, 255)
+GRAY_COLOR = (200,200,200)
+BLACK_COLOR=(0,0,0)
 start_game = True
 game_tittle = "JEU DE LA VIE"
+number_ligne = 8
+number_colonne = 8
+size_tab = 200
+
 
 def game_icon():
     icon_game = pygame.image.load("cheval.png")
     pygame.display.set_icon(icon_game)
 
+def draw_board(number_ligne,number_colonne):
+    for row in range(number_ligne):
+        for col in range(number_colonne):
+            x = size_tab * row
+            y = size_tab * col
+            rect = pygame.Rect(x,y,size_tab,size_tab)
+            pygame.draw.rect(screen,GRAY_COLOR,rect ,10)
+    pygame.display.flip()
 
-class Cellules :
-    def __init__(self,etat,couleur):
+class Cellules:
+
+
+    def __init__(self,etat,couleur=BLACK_COLOR,size_cellule):
         self.etat = etat
         self.couleur = couleur
+        self.size_cellule= size_cellule
+
+
+    def is_alive(self):
+        if self.etat == True:
+            return True
+        else return False
+
+class Universe:
+
+    def __init__(self, universe_size):
+        self.universe_size=universe_size
+
+
 
 class Button:
     def __init__(self,x=0, y=0, width=100, height=50, text=""):
@@ -53,8 +83,9 @@ while start_game:
 
         if button_start.is_click(event):
             print("cliquer")
-            screen.fill(RED_COLOR)
+            screen.fill(GREEN_COLOR)
             pygame.display.flip()
+            draw_board(number_ligne,number_colonne)
             time.sleep(5)
         if button_exit.is_click(event):
             start_game = False
