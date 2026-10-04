@@ -5,9 +5,12 @@ pygame.init()
 
 screen_size=(840,420)
 screen =pygame.display.set_mode(screen_size,pygame.RESIZABLE)
+surface = pygame.Surface((840,420))
+rect = pygame.Rect(20, 20, 667, 375)
 clock = pygame.time.Clock()
 BUTTON_COLOR = (70, 130, 180)
 RED_COLOR = (255, 0 , 0)
+GREEN_COLOR = (0, 255, 0)
 TEXT_COLOR = (255, 255, 255)
 start_game = True
 game_tittle = "JEU DE LA VIE"
@@ -16,19 +19,25 @@ def game_icon():
     icon_game = pygame.image.load("cheval.png")
     pygame.display.set_icon(icon_game)
 
+
+class Cellules :
+    def __init__(self,etat,couleur):
+        self.etat = etat
+        self.couleur = couleur
+
 class Button:
     def __init__(self,x=0, y=0, width=100, height=50, text=""):
         self.rect = pygame.Rect(x, y, width, height)
         self.text = text
         self.font = pygame.font.SysFont(None, 36)
-        
+
     def is_click(self,event):
         if event.type == pygame.MOUSEBUTTONDOWN:
             if self.rect.collidepoint(event.pos):
                 return True
         return False
-        
-    	
+
+
     def draw(self,surface ,color):
         pygame.draw.rect(surface, color, self.rect)
         if self.text:
@@ -50,6 +59,9 @@ while start_game:
         if button_exit.is_click(event):
             start_game = False
 
+     
+    screen.blit(surface, (200,150))
+
     game_icon()
     screen.fill((30, 30, 30))
     button_start.draw(screen,BUTTON_COLOR)
@@ -58,7 +70,3 @@ while start_game:
 
 pygame.quit()
 
-class Cellules :
-    def __init__(self,etat,couleur)
-        self.etat = etat
-        self.couleur = couleur
